@@ -47,6 +47,7 @@ public abstract class AbstractComponent implements Component {
     ArrayList<KeyListener> keyListeners = new ArrayList<>();
     ArrayList<UpdateListener> updateListeners = new ArrayList<>();
     ArrayList<TickListener> tickListeners = new ArrayList<>();
+    ArrayList<GuiUpdateListener> guiUpdateListeners = new ArrayList<>();
 
     ArrayList<IPoof> poofs = new ArrayList<>();
 
@@ -280,6 +281,17 @@ public abstract class AbstractComponent implements Component {
     public void addTickListener(TickListener listener) {
         if (!tickListeners.contains(listener))
             tickListeners.add(listener);
+    }
+
+    @Override
+    public ArrayList<GuiUpdateListener> getGuiUpdateListeners() {
+        return guiUpdateListeners;
+    }
+
+    @Override
+    public void addGuiUpdateListener(GuiUpdateListener listener) {
+        if (!guiUpdateListeners.contains(listener))
+            guiUpdateListeners.add(listener);
     }
 
     @Override

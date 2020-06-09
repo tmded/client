@@ -99,6 +99,10 @@ public interface Component {
 
     public void addTickListener(TickListener listener);
 
+    public ArrayList<GuiUpdateListener> getGuiUpdateListeners();
+
+    public void addGuiUpdateListener(GuiUpdateListener listener);
+
     public void addPoof(IPoof poof);
 
     public void callPoof(Class<? extends IPoof> target, PoofInfo info);

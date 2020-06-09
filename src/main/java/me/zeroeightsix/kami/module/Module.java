@@ -147,6 +147,7 @@ public class Module {
     protected void onDisable() {}
 
     protected void onToggle() {
+        KamiMod.getInstance().getGuiManager().callGuiUpdateExternal();
         if (!name.getValue().equals("clickGUI") && MODULE_MANAGER.getModuleT(CommandConfig.class).toggleMessages.getValue()) {
             sendChatMessage(name.getValue() + (enabled.getValue() ? " &aenabled" : " &cdisabled"));
         }

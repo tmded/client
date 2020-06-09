@@ -3,6 +3,7 @@ package me.zeroeightsix.kami.gui.rgui;
 import me.zeroeightsix.kami.gui.rgui.component.Component;
 import me.zeroeightsix.kami.gui.rgui.component.container.AbstractContainer;
 import me.zeroeightsix.kami.gui.rgui.component.container.Container;
+import me.zeroeightsix.kami.gui.rgui.component.listen.GuiUpdateListener;
 import me.zeroeightsix.kami.gui.rgui.component.listen.KeyListener;
 import me.zeroeightsix.kami.gui.rgui.component.listen.MouseListener;
 import me.zeroeightsix.kami.gui.rgui.render.theme.Theme;
@@ -321,6 +322,21 @@ public abstract class GUI extends AbstractContainer {
                 handleWheel(x, y, Mouse.getDWheel());
             }
         }
+    }
+
+    public void callGuiUpdateExternal() {
+        callGuiUpdate(this);
+    }
+
+    public void callGuiUpdate(Container container) {
+        // this causes a stack overflow
+/*        container.getGuiUpdateListeners().forEach(guiUpdate -> guiUpdate.onGuiUpdate());
+        for (Component component : container.getChildren()) {
+            if (component instanceof Container)
+                callGuiUpdate(container);
+            else
+                component.getGuiUpdateListeners().forEach(guiUpdate -> guiUpdate.onGuiUpdate());
+        }*/
     }
 
     public void callTick(Container container) {
