@@ -2,6 +2,7 @@ package me.zeroeightsix.kami.module.modules.combat
 
 import me.zeroeightsix.kami.KamiMod
 import me.zeroeightsix.kami.module.Module
+import me.zeroeightsix.kami.module.modules.combat.Surround.Companion.faceVectorPacketInstant
 import me.zeroeightsix.kami.setting.Settings
 import net.minecraft.init.Blocks
 import net.minecraft.network.play.client.CPacketEntityAction
@@ -47,6 +48,7 @@ class BedAura : Module() {
         val hitVec = Vec3d(blockpos).add(0.5, 0.5, 0.5).add(Vec3d(EnumFacing.DOWN.directionVec).scale(0.5))
         // we un sneak so that the right click registers as an explosion
         mc.player.connection.sendPacket(CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING))
+        faceVectorPacketInstant(hitVec)
         // tell out player to right click the block
         mc.playerController.processRightClickBlock(mc.player, mc.world, blockpos, EnumFacing.DOWN,hitVec,EnumHand.MAIN_HAND)
     }
